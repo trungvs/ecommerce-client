@@ -163,6 +163,11 @@ export default function Cart() {
         setListItem(cartList)
         cartList = cartList.map(i => `${i.id}`)
         dispatch(updateQuantity());
+    }, [render])
+
+    useEffect(() => {
+        let cartList = JSON.parse(localStorage.getItem("cart")) || []
+        cartList = cartList.map(i => `${i.id}`)
         if (localStorage.getItem("access_token")) {
             getInformation()
             .then(res => {
@@ -176,31 +181,43 @@ export default function Cart() {
                     formik.values.district = res.data.data.district
                     formik.values.ward = res.data.data.ward
 
-                    axios.get("https://provinces.open-api.vn/api/?depth=1")
-                    .then(res => {
-                        setProvinces(res.data)
-                        const selectedProvince = res.data.find(p => p.name === formik.values.province)?.code
-                        if (selectedProvince !== undefined) {
-                            axios.get(`https://provinces.open-api.vn/api/p/${selectedProvince}?depth=2`)
-                            .then(res => {
-                                setDistricts(res.data.districts)
-                                const selectedDistrict = res.data.districts.find(d => d.name === formik.values.district)?.code
-                                axios.get(`https://provinces.open-api.vn/api/d/${selectedDistrict}?depth=2`)
-                                .then(res => setWards(res.data.wards))
-                            })
-                        }
-                    })
+                    if (provinces?.length === 0) {
+                        console.log(provinces)
+                        axios.get("https://provinces.open-api.vn/api/?depth=1")
+                        .then(res => {
+                            setProvinces(res.data)
+                            const selectedProvince = res.data.find(p => p.name === formik.values.province)?.code
+                            if (selectedProvince !== undefined) {
+                                axios.get(`https://provinces.open-api.vn/api/p/${selectedProvince}?depth=2`)
+                                .then(res => {
+                                    setDistricts(res.data.districts)
+                                    const selectedDistrict = res.data.districts.find(d => d.name === formik.values.district)?.code
+                                    axios.get(`https://provinces.open-api.vn/api/d/${selectedDistrict}?depth=2`)
+                                    .then(res => setWards(res.data.wards))
+                                })
+                            }
+                        })
+                    }
                 }
             })
         }
-    }, [render])
-
-    useEffect(() => {
-        let cartList = JSON.parse(localStorage.getItem("cart")) || []
-        cartList = cartList.map(i => `${i.id}`)
         getInfoFromCart({cartList: cartList})
-        .then(res => setOriginalList(res.data.data))
-        .catch(err => toast.error("Có lỗi, vui lòng thử lại"))
+            .then(res => setOriginalList(res.data.data))
+            .catch(err => toast.error("Có lỗi, vui lòng thử lại"))
+        axios.get("https://provinces.open-api.vn/api/?depth=1")
+            .then(res => {
+                setProvinces(res.data)
+                const selectedProvince = res.data.find(p => p.name === formik.values.province)?.code
+                if (selectedProvince !== undefined) {
+                    axios.get(`https://provinces.open-api.vn/api/p/${selectedProvince}?depth=2`)
+                    .then(res => {
+                        setDistricts(res.data.districts)
+                        const selectedDistrict = res.data.districts.find(d => d.name === formik.values.district)?.code
+                        axios.get(`https://provinces.open-api.vn/api/d/${selectedDistrict}?depth=2`)
+                        .then(res => setWards(res.data.wards))
+                    })
+                }
+            })
     }, [])
 
     return (
