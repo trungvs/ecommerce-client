@@ -1,0 +1,12 @@
+.auth-wrapper {
+    width: "100%";
+    // margin-top: var(--navbar-height);
+
+    .auth-box {
+        display: none;
+    }
+    .active {
+        display: block;
+    }
+
+}

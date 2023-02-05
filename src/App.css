@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --text-color: #000;
+  --text-color-grey: rgba(0, 0, 0, 0.7);
+  --text-color-blue: rgb(6, 39, 239);
+  --text-color-blue-light: #2f5acf;
+  --font-size-m: 16px;
+  --font-size-s: 14px;
+  --font-weight-black: 900;
+  --font-weight-bold: 700;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --font-weight-light: 300;
+
+}
+
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css);

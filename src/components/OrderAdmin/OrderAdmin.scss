@@ -1,0 +1,48 @@
+.orderAdminDetails-wrapper {
+    .order-info {
+        list-style: none;
+
+        &-item {
+            display: block;
+            margin: 5px 0;
+            font-size: 16px;
+
+            &-title {
+                // display: inline-block;
+                // min-width: 120px;
+                width: 120px;
+                font-weight: 700;
+            }
+            &-content {
+            }
+        }
+    }
+    .order-item {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+
+        &-img {
+            min-width: 50px;
+            width: 100%;
+            margin-right: 10px;
+            object-fit: contain;
+        }
+        &-info {
+            display: flex;
+            flex-direction: column;
+
+            &-name {
+                font-weight: 500;
+            }
+            &-size {
+                font-weight: 700;
+                color: blue;
+            }
+            &-quantity {
+                font-weight: 500;
+                color: red;
+            }
+        }
+    }
+}

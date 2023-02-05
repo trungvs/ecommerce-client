@@ -1,0 +1,40 @@
+.dashboard-wrapper {
+    padding: 0;
+
+    .dashboard-statics {
+
+        &-item-1,
+        &-item-2,
+        &-item-3,
+        &-item-4 {
+            margin: 0 10px;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            min-height: 170px;
+        }
+
+        &-item-1 {
+            background-color: #72b1db;
+        }
+        &-item-2 {
+            background-color: #cc5757;
+        }
+        &-item-3 {
+            background-color: #8b61b5;
+        }
+        &-item-4 {
+            background-color: #af7d56;
+        }
+        &-title {
+            display: block;
+            font-size: 25px;
+            font-weight: 900;
+        }
+        &-content {
+            display: block;
+            font-size: 20px;
+        }
+
+    }
+}
